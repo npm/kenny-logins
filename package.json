@@ -1,6 +1,6 @@
 {
   "name": "@npminc/kenny-logins",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "cli for logging onto npm",
   "main": "kenny-logins.js",
   "bin": {
