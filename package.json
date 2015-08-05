@@ -1,6 +1,6 @@
 {
   "name": "kenny-logins",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "cli for logging onto npm",
   "main": "kenny-logins.js",
   "bin": {
