@@ -4,6 +4,7 @@
 module.exports = login
 
 var minimist = require('minimist')
+var Promise = require('bluebird')
 var nexpect = require('nexpect')
 
 if (require.main === module) {
@@ -31,11 +32,12 @@ function login (opts, ready) {
     )
   }
 
+  var deferred = Promise.defer()
   var executable = opts.npm || 'npm'
   var args = opts.npmParams || []
   args.unshift('login')
 
-  return nexpect.spawn(executable, args, {stream: 'all', cwd: opts.cwd})
+  nexpect.spawn(executable, args, {stream: 'all', cwd: opts.cwd})
     .expect('Username: ')
     .sendline(opts.username)
     .expect('Password: ')
@@ -45,14 +47,16 @@ function login (opts, ready) {
     .sendEof()
     .run(onrun)
 
+  return deferred.promise.nodeify(ready)
+
   function onrun (err, stdout, exitcode) {
     if (err) {
-      return ready(err)
+      return deferred.reject(err)
     }
     if (exitcode !== 0) {
       return ready(new Error('non-zero exitcode: ' + exitcode))
     }
-    return ready(null)
+    return deferred.resolve(null)
   }
 }
 
