@@ -19,20 +19,21 @@ if (require.main === module) {
 }
 
 function login (opts, ready) {
+  var deferred = Promise.defer()
   if (!('username' in opts) ||
       !('password' in opts) ||
       !('email' in opts) ||
       opts.username === undefined ||
       opts.password === undefined ||
       opts.email === undefined) {
-    return setTimeout(
-      ready,
+    setTimeout(
+      deferred.reject,
       0,
       new Error('login requires {username, password, email}')
     )
+    return deferred.promise
   }
 
-  var deferred = Promise.defer()
   var executable = opts.npm || 'npm'
   var args = opts.npmParams || []
   args.unshift('login')
@@ -54,7 +55,7 @@ function login (opts, ready) {
       return deferred.reject(err)
     }
     if (exitcode !== 0) {
-      return ready(new Error('non-zero exitcode: ' + exitcode))
+      return deferred.reject(new Error('non-zero exitcode: ' + exitcode))
     }
     return deferred.resolve(null)
   }
