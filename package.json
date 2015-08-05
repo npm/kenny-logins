@@ -23,9 +23,9 @@
   "author": "Chris Dickinson <chris@neversaw.us> (http://neversaw.us/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/npm/kenny-logons/issues"
+    "url": "https://github.com/npm/kenny-logins/issues"
   },
-  "homepage": "https://github.com/npm/kenny-logons#readme",
+  "homepage": "https://github.com/npm/kenny-logins#readme",
   "dependencies": {
     "minimist": "^1.1.2",
     "nexpect": "^0.5.0"
