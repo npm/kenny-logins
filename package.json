@@ -21,7 +21,7 @@
     "login"
   ],
   "author": "Chris Dickinson <chris@neversaw.us> (http://neversaw.us/)",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/npm/kenny-logins/issues"
   },

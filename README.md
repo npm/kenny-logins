@@ -14,3 +14,7 @@ an error (when there's been an error!) or `null` if everything is ok.
 ### `kenny-logins --user=username --pass=password --email=email`
 
 Returns 0 on success, 1 on failure.
+
+## License
+
+ISC
